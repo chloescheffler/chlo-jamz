@@ -1,7 +1,6 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+puts "Creating seeds 🌱..."
+
+User.create(username: "KunElite2022", password: "ilovepasta12", date_of_birth: "10/16/1999", age: 23, pronouns: "he/him", bio: "Cybersecurity | Dog-Lover 🐕 | Based in Atlanta, GA" profile_pic_url: "https://www.google.com/url?sa=i&url=https%3A%2F%2Ficon-icons.com%2Ficon%2Fbatman-avatar%2F90804&psig=AOvVaw031kPU6YrsWK86uQPcFW-x&ust=1669334215379000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCNDo69nAxfsCFQAAAAAdAAAAABAJ")
+User.create(username: "TouRine", password: "ilikepizza", date_of_birth: "03/21/2000", age: 22, pronouns: "he/him", bio: "Hiya! 👋" profile_pic_url: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fsmilebrightfamilydentistry.com%2Ftestimonials%2F&psig=AOvVaw031kPU6YrsWK86uQPcFW-x&ust=1669334215379000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCNDo69nAxfsCFQAAAAAdAAAAABAT")
+User.create(username: "Chlomoney", password: "chloelovesmonay", date_of_birth: "05/02/2002", age: 20, pronouns: "she/her", bio: "What's up guyssss! Future Software Developer @ Flatiron School #goflatiron #happycoding! 👩‍💻" profile_pic_url: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.shareicon.net%2Favatar-social-user-woman-profile-829453&psig=AOvVaw031kPU6YrsWK86uQPcFW-x&ust=1669334215379000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCNDo69nAxfsCFQAAAAAdAAAAABAY")
+User.create(username: "TaiLr", password: "ttimestwo", date_of_birth: "06/01/1989", age: 33, pronouns: "he/him", bio: "Sup guys, I love every type of music. Hit me up and listen to my playlist. 😘" profile_pic_url: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.shareicon.net%2Fprofile-avatar-man-user-business-people-boy-771188&psig=AOvVaw031kPU6YrsWK86uQPcFW-x&ust=1669334215379000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCNDo69nAxfsCFQAAAAAdAAAAABAd")

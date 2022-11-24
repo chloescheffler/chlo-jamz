@@ -81,4 +81,4 @@ test:
 #
 production:
   <<: *default
-  url: <%= ENV['DATABASE_URL'] %>
+  url: <%= ENV['postgres://chlo_jamz_phase_5_capstone_proj_user:CXg6ohE1YBKOzXp46Cv65MKXVgegbXSc@dpg-cdv71a1a6gdsa65v69eg-a/chlo_jamz_phase_5_capstone_proj'] %>

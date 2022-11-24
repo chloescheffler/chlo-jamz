@@ -2,23 +2,25 @@ import { useState, useEffect } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    fetch("/hello")
-      .then((r) => r.json())
-      .then((data) => setCount(data.count));
-  }, []);
 
   return (
     <BrowserRouter>
       <div className="App">
         <Switch>
-          <Route path="/testing">
-            <h1>Test Route</h1>
+          <Route path="/my-favorite-songs">
+            <h1>User's fav songs goes here</h1>
           </Route>
-          <Route path="/">
-            <h1>Page Count: {count}</h1>
+          <Route path="/log-in">
+            <h1>Log-In goes here</h1>
+          </Route>
+          <Route path="/my-account">
+            <h1>This is the user's account</h1>
+          </Route>
+          <Route path="/about-creator">
+            <h1>This is about me </h1>
+          </Route>
+          <Route exact path="/">
+            <h1>hello</h1>
           </Route>
         </Switch>
       </div>
