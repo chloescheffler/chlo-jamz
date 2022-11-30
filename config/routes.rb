@@ -1,8 +1,16 @@
 Rails.application.routes.draw do
+  resources :song_playlists
+  resources :genres
   resources :comments
   resources :songs
-  resources :playlists, only: [:index, :show, :update]
-  resources :users, only: [:create, :index, :show, :update]
+  resources :playlists
+  resources :users, only: [:index, :create, :show, :update]
+
+  post "/signup", to: "users#create"
+  # get "/my-account", to: "users#show"
+  post "/login", to: "sessions#create" 
+  delete "/logout", to: "sessions#delete"
+  get '/authorized_user', to: 'users#show'
 
   get '*path',
   to: 'fallback#index',
