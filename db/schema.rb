@@ -49,6 +49,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_29_015003) do
     t.string "name"
     t.string "artist"
     t.string "url"
+    t.string "album_url"
     t.bigint "genre_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -58,7 +59,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_29_015003) do
   create_table "users", force: :cascade do |t|
     t.string "user_name"
     t.string "password_digest"
-    t.string "date_of_birth"
+    t.datetime "date_of_birth"
     t.integer "age"
     t.string "profile_pic_url"
     t.string "pronouns"

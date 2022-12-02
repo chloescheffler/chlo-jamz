@@ -2,8 +2,14 @@ import { useState, useEffect } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Login from "./Login"
 import Home from "./Home"
+import Signup from "./Signup"
+import Navbar from "./Navbar"
+import AboutCreator from "./AboutCreator"
+import MyAccount from "./MyAccount"
 
 function App() {
+  const [user_profile, setUserProfile] = useState([])
+  const [songs, setSongs] = useState([])
   const [errors, setErrors] = useState(false)
   const [currentUser, setCurrentUser] = useState(false)
 
@@ -14,11 +20,27 @@ function App() {
         res.json()
         .then((user) => {
           updateUser(user);
-          
+          // fetchUsers()
         });
       }
     })
   },[])
+
+  useEffect(() => {
+    fetch("/songs")
+      .then((r) => r.json())
+      .then((song) => {
+        setSongs(song);
+      });
+  }, []);
+
+  useEffect(() => {
+    fetch("/users")
+      .then((r) => r.json())
+      .then((profile) => {
+        setUserProfile(profile);
+      });
+  }, []);
 
   const updateUser = (user) => setCurrentUser(user)
   
@@ -28,21 +50,26 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
+        <h1>Chlo-Jamz</h1>
+          <header className="App-header">
+            <Navbar updateUser={updateUser} currentUser={currentUser}/>
+          </header>
         <Switch>
           <Route path="/my-favorite-songs">
             <h1>User's fav songs goes here</h1>
           </Route>
           <Route path="/login">
             <Login updateUser={updateUser}/>
+            <Signup updateUser={updateUser} />
           </Route>
           <Route path="/my-account">
-            <h1>This is the user's account</h1>
+            <MyAccount user_profile={user_profile} currentUser={currentUser}/>
           </Route>
           <Route path="/about-creator">
-            <h1>This is about me </h1>
+            <AboutCreator />
           </Route>
           { currentUser && <Route exact path="/">
-           <Home currentUser={currentUser}/>
+            <Home currentUser={currentUser}/>
           </Route> }
         </Switch>
       </div>

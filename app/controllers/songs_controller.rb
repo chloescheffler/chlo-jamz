@@ -1,5 +1,5 @@
 class SongsController < ApplicationController
-    skip_before_action :authorize
+    skip_before_action :authorized_user, only: [:index]
     
     def index
         render json: Song.all, status: :ok

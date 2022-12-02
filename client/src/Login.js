@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 function Login({ updateUser }) {
+  const [errors, setErrors] = useState([]);
+  const history = useHistory();
+
   const [formData, setFormData] = useState({
     user_name: "",
     password: "",
   });
-  const [errors, setErrors] = useState([]);
-  const history = useHistory();
 
   const { user_name, password } = formData;
 
@@ -41,7 +42,8 @@ function Login({ updateUser }) {
 
   return (
     <div>
-      <form onSubmit={onSubmit}>
+      <form className="login-form" onSubmit={onSubmit}>
+        <p> Log In Here! </p>
         <input
           type="text"
           onChange={handleChange}
@@ -56,7 +58,7 @@ function Login({ updateUser }) {
           value={formData.password}
           placeholder="password"
         />
-        <input type="submit" value="submit"/>
+        <input type="submit" value="Log In"/>
       </form>
     </div>
   );

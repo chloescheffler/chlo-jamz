@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-    # skip_before_action :authorize, only: [:index, :show, :create]
     skip_before_action :authorized_user, only: [:index, :create]
 
     def index
@@ -10,9 +9,9 @@ class UsersController < ApplicationController
         # binding.break
         user = User.find_by(id: session[:user_id]) 
         if user
-          render json: user
+            render json: user
         else
-          render json: { error: "Not authorized" }, status: :unauthorized
+            render json: { error: "Not authorized" }, status: :unauthorized
         end
     end
 
