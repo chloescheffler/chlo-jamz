@@ -7,10 +7,19 @@ function MyAccount({ user_profile, currentUser }) {
     if  (currentUser) {
     return (
         <div> 
+            <img src={currentUser.profile_pic_url} alt="User profile pic" />
             <h1> 
                 Welcome, {currentUser.user_name} !
             </h1>
-            <img src={currentUser.profile_pic_url} alt="User profile pic" />
+            <h2>
+                {currentUser.date_of_birth}
+            </h2>
+            <h2>
+                {currentUser.age}
+            </h2>
+            <h2>
+                {currentUser.pronouns}
+            </h2>
             <h3>
                 {currentUser.bio}
             </h3>

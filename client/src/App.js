@@ -6,6 +6,7 @@ import Signup from "./Signup"
 import Navbar from "./Navbar"
 import AboutCreator from "./AboutCreator"
 import MyAccount from "./MyAccount"
+import AllSongs from "./AllSongs"
 
 function App() {
   const [user_profile, setUserProfile] = useState([])
@@ -55,8 +56,8 @@ function App() {
             <Navbar updateUser={updateUser} currentUser={currentUser}/>
           </header>
         <Switch>
-          <Route path="/my-favorite-songs">
-            <h1>User's fav songs goes here</h1>
+          <Route path="/all-songs">
+            <AllSongs songs={songs} />
           </Route>
           <Route path="/login">
             <Login updateUser={updateUser}/>

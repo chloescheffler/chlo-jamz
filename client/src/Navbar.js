@@ -21,7 +21,7 @@ function Navbar({ updateUser, currentUser }) {
         <div className="logoutButtonDiv">
             { currentUser ? <button className="logoutButton" onClick={handleLogout}>Logout</button> : null }
             <NavLink  className="nav" style={{ marginRight: "10px" }} exact to="/" >Home</NavLink>
-            <NavLink  className="nav" style={{ marginRight: "10px" }} to="/my-favorite-songs" >My Favorite Songs</NavLink>
+            <NavLink  className="nav" style={{ marginRight: "10px" }} to="/all-songs" >All Songs</NavLink>
             <NavLink  className="nav" style={{ marginRight: "10px" }} to="/my-account" >My Account</NavLink>
             <NavLink  className="nav" style={{ marginRight: "10px" }} to="/login" >Login/Signup</NavLink>
         </div>

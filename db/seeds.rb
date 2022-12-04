@@ -1,18 +1,11 @@
 require 'date'
 
-User.destroy_all
-Playlist.destroy_all
-Genre.destroy_all
-Song.destroy_all
-Comment.destroy_all
-SongPlaylist.destroy_all
-
 puts "Creating seeds 🌱..."
 
-U1 = User.create!(user_name: "KunElite2022", password: "ilovepasta12", date_of_birth: DateTime.new(1999, 10, 16), age: 23, pronouns: "he/him", bio: "Cybersecurity | Dog-Lover 🐕 | Based in Atlanta, GA", profile_pic_url: "https://www.flaticon.com/free-icon/man_3800457?term=black%20user&page=1&position=34&page=1&position=34&related_id=3800457&origin=search")
-U2 = User.create!(user_name: "TouRine", password: "ilikepizza", date_of_birth: DateTime.new(2000, 3, 21), age: 22, pronouns: "he/him", bio: "Hiya! 👋", profile_pic_url: "https://www.flaticon.com/free-icon/man_4140061?term=black%20user&page=1&position=61&page=1&position=61&related_id=4140061&origin=search")
-U3 = User.create!(user_name: "Chlomoney", password: "chloelovesmonay", date_of_birth: DateTime.new(2002, 5, 2), age: 20, pronouns: "she/her", bio: "What's up guyssss! Future Software Developer @ Flatiron School #goflatiron #happycoding! 👩‍💻", profile_pic_url: "https://www.flaticon.com/free-icon/woman_4140049?term=black%20user&page=1&position=66&page=1&position=66&related_id=4140049&origin=search")
-U4 = User.create!(user_name: "TaiLr", password: "ttimestwo", date_of_birth: DateTime.new(1989, 7, 4), age: 33, pronouns: "he/him", bio: "Sup guys, I love every type of music. Hit me up and listen to my playlist. 😘", profile_pic_url: "https://www.flaticon.com/free-icon/man_4139981?term=black%20user&page=1&position=50&page=1&position=50&related_id=4139981&origin=search")
+U1 = User.create!(user_name: "KunElite2022", password: "ilovepasta12", date_of_birth: DateTime.new(1999, 10, 16), age: 23, pronouns: "he/him", bio: "Cybersecurity | Dog-Lover 🐕 | Based in Atlanta, GA", profile_pic_url: "https://img.icons8.com/external-avatar-andi-nur-abdillah/512/external-avatar-business-avatar-circle-avatar-andi-nur-abdillah-10.png")
+U2 = User.create!(user_name: "TouRine", password: "ilikepizza", date_of_birth: DateTime.new(2000, 3, 21), age: 22, pronouns: "he/him", bio: "Hiya! 👋", profile_pic_url: "https://img.icons8.com/external-avatar-andi-nur-abdillah/512/external-avatar-business-avatar-circle-avatar-andi-nur-abdillah-10.png")
+U3 = User.create!(user_name: "Chlomoney", password: "chloelovesmonay", date_of_birth: DateTime.new(2002, 5, 2), age: 20, pronouns: "she/her", bio: "What's up guyssss! Future Software Developer @ Flatiron School #goflatiron #happycoding! 👩‍💻", profile_pic_url: "https://img.icons8.com/external-avatar-andi-nur-abdillah/512/external-avatar-business-avatar-circle-avatar-andi-nur-abdillah-7.png")
+U4 = User.create!(user_name: "TaiLr", password: "ttimestwo", date_of_birth: DateTime.new(1989, 7, 4), age: 33, pronouns: "he/him", bio: "Sup guys, I love every type of music. Hit me up and listen to my playlist. 😘", profile_pic_url: "https://cdn-icons-png.flaticon.com/512/1810/1810985.png")
 
 puts "Creating playlists..."
 
