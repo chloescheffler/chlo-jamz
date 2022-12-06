@@ -3,6 +3,11 @@ import Comment from "./Comment";
 
 function RenderVideo({ song }) {
     const [comments, setComments] = useState([])
+    const [showComments, setShowComments] = useState(true);
+
+    function handleShowComments() {
+      setShowComments((showComments) => !showComments);
+    }
 
     useEffect(() => {
       fetch(`/songs/${song.id}/comments`)
@@ -10,7 +15,7 @@ function RenderVideo({ song }) {
         .then(data => setComments(data))
     }, [])
 
-    const displayComments = comments.map((comment) => {
+    const displayComments = comments?.map((comment) => {
         return <Comment comment={comment} key={comment.id} />
     })
 
@@ -26,7 +31,11 @@ function RenderVideo({ song }) {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 />
-                {displayComments}
+                <button onClick={handleShowComments}>
+                    {showComments ? "Show Comments" : "Hide Comments"}
+                </button>
+                <h2>{showComments ? `${comments.length} Comments` : null}</h2>
+                {showComments ? displayComments : null}
             </div>
     )
 }

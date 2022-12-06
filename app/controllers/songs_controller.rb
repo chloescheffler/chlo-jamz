@@ -2,7 +2,11 @@ class SongsController < ApplicationController
     skip_before_action :authorized_user, only: [:index]
     
     def index
-        render json: Song.all, status: :ok
+        if (params[:genre]) 
+            render json: Song.joins(:genre).where({genre: {name: params[:genre]}})
+        else 
+            render json: Song.order(Arel.sql("RANDOM()")).limit(10), status: :ok
+        end
     end
 
     def show

@@ -3,33 +3,32 @@ import RenderVideo from "./RenderVideo";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 import Navbar from "./Navbar";
+import { useHistory } from "react-router-dom";
 
 function Home({ updateUser, currentUser, comments, songs }) {
-  const [genres, setGenres] = useState([])
-  const [randomSongs, setRandomSongs] = useState([])
- 
+  const [genres, setGenres] = useState([]);
+  const [randomSongs, setRandomSongs] = useState([]);
+  const history = useHistory()
+
+  const handleLogout = () => {
+    fetch(`/logout`, {
+        method:"DELETE"
+    })
+    .then(res =>{
+        if(res.ok){
+        updateUser(false)
+        history.push("./login")
+        }
+    })
+  }
+
   useEffect(() => {
     fetch("/genres")
-    .then((r) => r.json())
-    .then((genre) => {
-    setGenres(genre)
-    randomArray(songs)
-    });
-  }, [songs]);
-
-  function randomArray(songs) {
-    let newArray = [];
-    for (let i = 0; i < 10; i = newArray.length) {
-      let newItem = songs[Math.floor(Math.random() * songs.length)];
-      if (newArray.map((a) => a.id).includes(newItem.id)) {
-        return null;
-      } else {
-        newArray.push(newItem);
-      }
-    }
-    console.log(newArray)
-    setRandomSongs(newArray);
-  }
+      .then((r) => r.json())
+      .then((genre) => {
+        setGenres(genre);
+      });
+  }, []);
 
   if (!currentUser) {
     return <h1> Loading... </h1>;
@@ -37,8 +36,9 @@ function Home({ updateUser, currentUser, comments, songs }) {
 
   return (
     <div>
+      { currentUser ? <button className="logoutButton" onClick={handleLogout}>Logout</button> : null }
       Hello {currentUser.user_name}!
-      {/* <div className="dropdown is-up">
+      <div className="dropdown is-up">
         <div className="dropdown-trigger">
           <button
             className="button"
@@ -61,25 +61,20 @@ function Home({ updateUser, currentUser, comments, songs }) {
             </div>
           </div>
         </div>
-      </div> */}
-      {/* {displayGenres} */}
+      </div>
       <Carousel autoPlay showArrows={true} showThumbs={false}>
-        {/* {
+        {
             songs.map((song) => ( 
             <RenderVideo song={song} key={song.id} comments={comments} />
             ))
-        } */}
-        {randomSongs}
+        }
       </Carousel>
-      {/* <footer class="footer">
-        <div class="content has-text-centered">
-            <p>
+      <footer className="footer">
+        <div className="content has-text-centered">
                 <Navbar updateUser={updateUser} currentUser={currentUser} />
-            </p>
         </div>
-      </footer> */}
+      </footer>
     </div>
-    
   );
 }
 

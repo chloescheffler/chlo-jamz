@@ -36,6 +36,14 @@ function App() {
       });
   }, []);
 
+  // useEffect(() => {
+  //   fetch("/songs?genre=Rap")
+  //     .then((r) => r.json())
+  //     .then((song) => {
+  //       setSongs(song);
+  //     });
+  // }, []);
+
   useEffect(() => {
     fetch("/users")
       .then((r) => r.json())
@@ -51,6 +59,7 @@ function App() {
         setComments(comment);
       });
   }, []);
+
 
   const updateUser = (user) => setCurrentUser(user)
   
