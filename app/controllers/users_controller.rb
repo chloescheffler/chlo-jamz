@@ -35,21 +35,3 @@ class UsersController < ApplicationController
         params.permit(:user_name, :password, :date_of_birth, :age, :profile_pic_url, :pronouns, :bio)
     end
 end
-    # IX'S CODE
-
-    # skip_before_action :authorized_user, only: [:create]
-
-    # def show 
-    #     render json: current_user, status: :ok
-    # end 
-
-    # def create
-    #     user = User.create!(user_params)
-    #     render json: user, status: :created
-    # end 
-    
-    # private 
-
-    # def user_params
-    #     params.permit(:name, :email, :password)
-    # end

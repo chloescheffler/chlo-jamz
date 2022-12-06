@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy" # in Navbar.js
   get '/authorized_user', to: 'users#show' # in App.js
 
+  resources :songs do
+    resources :comments
+  end
+
   get '*path',
   to: 'fallback#index',
   constraints: ->(req) { !req.xhr? && req.format.html? }

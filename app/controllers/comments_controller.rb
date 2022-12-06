@@ -1,8 +1,12 @@
 class CommentsController < ApplicationController
-    skip_before_action :authorized_user, only: [:update]
-
+    skip_before_action :authorized_user, only: [:index, :update]
+    
     def index
-        render json: Comment.all, status: :ok
+        if (params[:song_id]) 
+            render json: Song.find(params[:song_id]).comments, status: :ok
+         else 
+            render json: Comment.all, status: :ok
+        end
     end
 
     def show 

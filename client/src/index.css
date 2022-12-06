@@ -11,3 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.carousel .control-dots{
+  padding: 30px;
+  margin: 10px -10px;
+  /* position: static; */
+}

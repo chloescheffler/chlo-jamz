@@ -11,6 +11,7 @@ import AllSongs from "./AllSongs"
 function App() {
   const [user_profile, setUserProfile] = useState([])
   const [songs, setSongs] = useState([])
+  const [comments, setComments] = useState([])
   const [errors, setErrors] = useState(false)
   const [currentUser, setCurrentUser] = useState(false)
 
@@ -43,18 +44,26 @@ function App() {
       });
   }, []);
 
+  useEffect(() => {
+    fetch("/comments")
+      .then((r) => r.json())
+      .then((comment) => {
+        setComments(comment);
+      });
+  }, []);
+
   const updateUser = (user) => setCurrentUser(user)
   
   if(errors) return <h1>{errors}</h1>
-  console.log(currentUser)
+  // console.log(currentUser)
 
   return (
     <BrowserRouter>
       <div className="App">
         <h1>Chlo-Jamz</h1>
-          <header className="App-header">
+          {/* <header className="App-header">
             <Navbar updateUser={updateUser} currentUser={currentUser}/>
-          </header>
+          </header> */}
         <Switch>
           <Route path="/all-songs">
             <AllSongs songs={songs} />
@@ -70,7 +79,7 @@ function App() {
             <AboutCreator />
           </Route>
           { currentUser && <Route exact path="/">
-            <Home currentUser={currentUser}/>
+            <Home updateUser={updateUser} currentUser={currentUser} comments={comments} songs={songs}/>
           </Route> }
         </Switch>
       </div>
