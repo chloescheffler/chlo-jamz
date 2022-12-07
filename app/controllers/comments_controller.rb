@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-    skip_before_action :authorized_user, only: [:index, :update]
+    skip_before_action :authorized_user, only: [:index, :show, :create, :update, :destroy]
     
     def index
         if (params[:song_id]) 
@@ -23,14 +23,19 @@ class CommentsController < ApplicationController
     end
 
     def destroy
-        find_comment.destroy
-        head :no_content
+        comment = find_comment
+        if comment
+            comment.destroy
+            head :no_content
+        else
+            render json: { error: "comment not found" }, status: 404
+        end
     end
 
     private 
 
     def find_comment
-        Comment.find_by(params[:id])
+        Comment.find_by(id: params[:id])
     end
 
     def comment_params

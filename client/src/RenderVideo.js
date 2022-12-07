@@ -15,8 +15,13 @@ function RenderVideo({ song }) {
         .then(data => setComments(data))
     }, [])
 
+    function handleDelete(id) {
+        const updatedObj = comments.filter(comment => comment.id !== id)
+        setComments(updatedObj)
+    }
+
     const displayComments = comments?.map((comment) => {
-        return <Comment comment={comment} key={comment.id} />
+        return <Comment comment={comment} key={comment.id} onDelete={handleDelete}/>
     })
 
     return (

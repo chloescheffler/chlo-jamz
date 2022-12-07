@@ -1,20 +1,62 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-function Comment({ comment }) {
-  const { description, user } = comment;
+function Comment({ comment, onDelete }) {
+  const [fetchedData, setFetchedData] = useState(false)
 
-  // const displayUserComments = comments.filter((comment) => comment.user_id === user_id)
+  function handleDelete(){
+    fetch(`/comments/${comment.id}`,{
+        method: 'DELETE',
+})
+  .then((r) => {
+    if (r.ok){
+        onDelete(comment.id)
+    }
+  })
+}
 
-  // const userCommentsMap = displayUserComments.map((userComments) => userComments.user )
+  function userAddComment(){
+    setFetchedData(true)
+    const newObj = {
+      user_id: comment.user_id,
+      song_id: comment.song_id,
+      description: comment.description
+    }
+    console.log(newObj)
+    const requestOptions = {
+    method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newObj)
+    };
+    fetch('/comments', requestOptions)
+        .then(response => response.json())
+        .then(data => setFetchedData(false));
+    }
 
-  // const userNameMap = userCommentsMap.map((user) => user.comments.user_name)
-//   console.log(comment);
+  function userUpdateRental(){
+    setFetchedData(true)
+    const requestOptions = {
+      method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify()
+      };
+        fetch(`/comments/${comment.id}`, requestOptions)
+          .then(response => response.json())
+          .then(data => setFetchedData(false));
+        }
 
   return (
     <div>
-      {description}
+      {comment.description}
       <br></br>
-      {user.user_name}
+      {comment.user.user_name}
+      <button onClick={handleDelete}> X </button>
+      <button className="editButton" onClick={userUpdateRental}>
+        <Link to={`/comments/${comment.id}`}>Edit</Link>
+      </button>
+      <button onClick={userAddComment}>
+        <Link to={`/comments/${comment.id}`}>Add Comment</Link>
+      </button>
     </div>
   );
 }

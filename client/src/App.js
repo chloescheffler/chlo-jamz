@@ -3,7 +3,6 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Login from "./Login"
 import Home from "./Home"
 import Signup from "./Signup"
-import Navbar from "./Navbar"
 import AboutCreator from "./AboutCreator"
 import MyAccount from "./MyAccount"
 import AllSongs from "./AllSongs"
@@ -14,7 +13,7 @@ function App() {
   const [comments, setComments] = useState([])
   const [errors, setErrors] = useState(false)
   const [currentUser, setCurrentUser] = useState(false)
-
+  
   useEffect(() => {
     fetch("/authorized_user")
     .then((res) => {
@@ -35,14 +34,6 @@ function App() {
         setSongs(song);
       });
   }, []);
-
-  // useEffect(() => {
-  //   fetch("/songs?genre=Rap")
-  //     .then((r) => r.json())
-  //     .then((song) => {
-  //       setSongs(song);
-  //     });
-  // }, []);
 
   useEffect(() => {
     fetch("/users")
@@ -70,9 +61,6 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <h1>Chlo-Jamz</h1>
-          {/* <header className="App-header">
-            <Navbar updateUser={updateUser} currentUser={currentUser}/>
-          </header> */}
         <Switch>
           <Route path="/all-songs">
             <AllSongs songs={songs} />
@@ -88,7 +76,7 @@ function App() {
             <AboutCreator />
           </Route>
           { currentUser && <Route exact path="/">
-            <Home updateUser={updateUser} currentUser={currentUser} comments={comments} songs={songs}/>
+            <Home updateUser={updateUser} currentUser={currentUser} comments={comments} songs={songs} setSongs={setSongs} />
           </Route> }
         </Switch>
       </div>

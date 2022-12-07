@@ -1,26 +1,34 @@
 import React, { useState, useEffect } from "react";
 import RenderVideo from "./RenderVideo";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import Navbar from "./Navbar";
 import { useHistory } from "react-router-dom";
 
-function Home({ updateUser, currentUser, comments, songs }) {
+function Home({ updateUser, currentUser, comments, songs, setSongs }) {
   const [genres, setGenres] = useState([]);
-  const [randomSongs, setRandomSongs] = useState([]);
+  const [selectedGenre, setSelectedGenre] = useState("Holiday")
   const history = useHistory()
 
   const handleLogout = () => {
     fetch(`/logout`, {
-        method:"DELETE"
+      method:"DELETE"
     })
     .then(res =>{
-        if(res.ok){
-        updateUser(false)
-        history.push("./login")
-        }
+      if(res.ok){
+      updateUser(false)
+      history.push("./login")
+      }
     })
   }
+
+  const dropdownButton = 
+    <select onChange={(e) => setSelectedGenre(e.target.value)}>
+      {
+        genres.map((genre) => 
+          <option key={genre.id}>{genre.name}</option> )
+      }
+    </select>;
 
   useEffect(() => {
     fetch("/genres")
@@ -30,6 +38,12 @@ function Home({ updateUser, currentUser, comments, songs }) {
       });
   }, []);
 
+  useEffect(() => {
+    fetch(`/songs?genre=${selectedGenre}`)
+      .then(res => res.json())
+      .then(data => setSongs(data))
+  }, [selectedGenre])
+
   if (!currentUser) {
     return <h1> Loading... </h1>;
   }
@@ -38,40 +52,17 @@ function Home({ updateUser, currentUser, comments, songs }) {
     <div>
       { currentUser ? <button className="logoutButton" onClick={handleLogout}>Logout</button> : null }
       Hello {currentUser.user_name}!
-      <div className="dropdown is-up">
-        <div className="dropdown-trigger">
-          <button
-            className="button"
-            aria-haspopup="true"
-            aria-controls="dropdown-menu7"
-          >
-            <span>Dropup button</span>
-            <span className="icon is-small">
-              <i className="fas fa-angle-up" aria-hidden="true"></i>
-            </span>
-          </button>
-        </div>
-        <div className="dropdown-menu" id="dropdown-menu7" role="menu">
-          <div className="dropdown-content">
-            <div className="dropdown-item">
-              <p>
-                You can add the <code>is-up</code> modifier to have a dropdown
-                menu that appears above the dropdown button.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+      {dropdownButton}
       <Carousel autoPlay showArrows={true} showThumbs={false}>
         {
-            songs.map((song) => ( 
+          songs.map((song) => ( 
             <RenderVideo song={song} key={song.id} comments={comments} />
-            ))
+          ))
         }
       </Carousel>
       <footer className="footer">
         <div className="content has-text-centered">
-                <Navbar updateUser={updateUser} currentUser={currentUser} />
+          <Navbar updateUser={updateUser} currentUser={currentUser} />
         </div>
       </footer>
     </div>
