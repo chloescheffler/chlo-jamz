@@ -1,14 +1,36 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 
-function Navbar() {
+    function Navbar({ updateUser, currentUser }) {
+
+    const history = useHistory()
+    const handleLogout = () => {
+        fetch(`/logout`, {
+          method:"DELETE"
+        })
+        .then(res =>{
+          if(res.ok){
+          updateUser(false)
+          history.push("./login")
+          }
+        })
+      }
 
     return (
-        <div className="logoutButtonDiv">
-                <NavLink  className="nav" style={{ marginRight: "20px" }} exact to="/" >Home</NavLink>
-                <NavLink  className="nav" style={{ marginRight: "20px" }} to="/all-songs" >All Songs</NavLink>
-                <NavLink  className="nav" style={{ marginRight: "20px" }} to="/my-account" >My Account</NavLink>
-                <NavLink  className="nav" style={{ marginRight: "20px" }} to="/login" >Login/Signup</NavLink>
+        <div className="buttons">
+            <button className="button is-normal px-5 mx-6">
+                <NavLink  className="nav" exact to="/" >Home</NavLink>
+            </button>
+            <button className="button is-normal px-5 mx-6">
+                <NavLink  className="nav" exact to="/all-songs" >All Songs</NavLink>
+            </button>
+            <button className="button is-normal px-5 mx-6">
+                <NavLink  className="nav" exact to="/my-account" >My Account</NavLink>
+            </button>
+            <button className="button is-normal px-5 mx-6">
+                <NavLink  className="nav" exact to="/login" >Login/Signup</NavLink>
+            </button>
+            { currentUser ? <button className="button is-normal is-pulled-right px-5 mx-6" onClick={handleLogout}>Logout</button> : null }
         </div>
     )
 }

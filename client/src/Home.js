@@ -3,24 +3,10 @@ import RenderVideo from "./RenderVideo";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import Navbar from "./Navbar";
-import { useHistory } from "react-router-dom";
 
-function Home({ updateUser, currentUser, comments, songs, setSongs }) {
+function Home({ setFetchedData, updateUser, currentUser, comments, songs, setSongs }) {
   const [genres, setGenres] = useState([]);
   const [selectedGenre, setSelectedGenre] = useState("Holiday")
-  const history = useHistory()
-
-  const handleLogout = () => {
-    fetch(`/logout`, {
-      method:"DELETE"
-    })
-    .then(res =>{
-      if(res.ok){
-      updateUser(false)
-      history.push("./login")
-      }
-    })
-  }
 
   const dropdownButton = 
     <select onChange={(e) => setSelectedGenre(e.target.value)}>
@@ -50,13 +36,14 @@ function Home({ updateUser, currentUser, comments, songs, setSongs }) {
 
   return (
     <div>
-      { currentUser ? <button className="logoutButton" onClick={handleLogout}>Logout</button> : null }
-      Hello {currentUser.user_name}!
+      <div className="has-text-centered">
+        Hello {currentUser.user_name}!
+      </div>
       {dropdownButton}
       <Carousel autoPlay showArrows={true} showThumbs={false}>
         {
           songs.map((song) => ( 
-            <RenderVideo song={song} key={song.id} comments={comments} />
+          <RenderVideo song={song} key={song.id} comments={comments} setFetchedData={setFetchedData}/>
           ))
         }
       </Carousel>

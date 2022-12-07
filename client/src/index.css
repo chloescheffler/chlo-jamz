@@ -12,8 +12,11 @@ code {
     monospace;
 }
 
-.carousel .control-dots{
-  padding: 30px;
-  margin: 10px -10px;
-  /* position: static; */
+.carousel {
+  width: 75%!important;
+}
+.carousel .control-dots {
+  margin: auto!important;
+  padding: 3px!important;
+  margin-bottom: 100px!important;
 }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Comment from "./Comment";
 
-function RenderVideo({ song }) {
+function RenderVideo({ song, setFetchedData }) {
     const [comments, setComments] = useState([])
     const [showComments, setShowComments] = useState(true);
 
@@ -21,7 +21,7 @@ function RenderVideo({ song }) {
     }
 
     const displayComments = comments?.map((comment) => {
-        return <Comment comment={comment} key={comment.id} onDelete={handleDelete}/>
+        return <Comment comment={comment} key={comment.id} onDelete={handleDelete} setFetchedData={setFetchedData}/>
     })
 
     return (

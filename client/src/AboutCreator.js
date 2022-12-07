@@ -12,9 +12,9 @@ function AboutCreator() {
     return (
         <div>
             <figure className="image is-128x128">
-                <img className="is-rounded" src={logo1} alt="Chloe" width="200" height="270"/>
-                <img className="is-rounded" src={logo2} alt="Flowers" width="200" height="270"/>
-                <img className="is-rounded" src={logo3} alt="Sky" width="200" height="270"/>
+                <img src={logo1} alt="Chloe" width="200" height="270"/>
+                <img src={logo2} alt="Flowers" width="200" height="270"/>
+                <img src={logo3} alt="Sky" width="200" height="270"/>
             </figure>
             <a href="https://github.com/chloescheffler">
                 <img src={gif1} className="githubIcon" alt="Github Icon" width="40" height="40" />

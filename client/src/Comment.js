@@ -1,37 +1,19 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-function Comment({ comment, onDelete }) {
-  const [fetchedData, setFetchedData] = useState(false)
+function Comment({ comment, onDelete, setFetchedData }) {
+  // const [fetchedData, setFetchedData] = useState(false)
 
   function handleDelete(){
     fetch(`/comments/${comment.id}`,{
         method: 'DELETE',
-})
+    })
   .then((r) => {
     if (r.ok){
         onDelete(comment.id)
-    }
-  })
-}
-
-  function userAddComment(){
-    setFetchedData(true)
-    const newObj = {
-      user_id: comment.user_id,
-      song_id: comment.song_id,
-      description: comment.description
-    }
-    console.log(newObj)
-    const requestOptions = {
-    method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newObj)
-    };
-    fetch('/comments', requestOptions)
-        .then(response => response.json())
-        .then(data => setFetchedData(false));
-    }
+      }
+    })
+  }
 
   function userUpdateRental(){
     setFetchedData(true)
@@ -55,9 +37,6 @@ function Comment({ comment, onDelete }) {
       <button onClick={handleDelete}> X </button>
       <button className="editButton" onClick={userUpdateRental}>
         <Link to={`/comments/${comment.id}`}>Edit</Link>
-      </button>
-      <button onClick={userAddComment}>
-        <Link to={`/comments/${comment.id}`}>Add Comment</Link>
       </button>
       </p>
       </div>

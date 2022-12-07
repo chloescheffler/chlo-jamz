@@ -6,6 +6,7 @@ import Signup from "./Signup"
 import AboutCreator from "./AboutCreator"
 import MyAccount from "./MyAccount"
 import AllSongs from "./AllSongs"
+import CommentForm from "./CommentForm"
 
 function App() {
   const [user_profile, setUserProfile] = useState([])
@@ -13,6 +14,7 @@ function App() {
   const [comments, setComments] = useState([])
   const [errors, setErrors] = useState(false)
   const [currentUser, setCurrentUser] = useState(false)
+  const [fetchedData, setFetchedData] = useState(false)
   
   useEffect(() => {
     fetch("/authorized_user")
@@ -51,17 +53,18 @@ function App() {
       });
   }, []);
 
-
   const updateUser = (user) => setCurrentUser(user)
   
   if(errors) return <h1>{errors}</h1>
-  // console.log(currentUser)
 
   return (
     <BrowserRouter>
       <div className="App">
-        <h1 className="logo">Chlo-Jamz</h1>
+        <h1 className="has-text-centered">Chlo-Jamz</h1>
         <Switch>
+          <Route path="/comment-form">
+            <CommentForm comments={comments} setFetchedData={setFetchedData} currentUser={currentUser}/>
+          </Route>
           <Route path="/all-songs">
             <AllSongs songs={songs} />
           </Route>
@@ -76,7 +79,7 @@ function App() {
             <AboutCreator />
           </Route>
           { currentUser && <Route exact path="/">
-            <Home updateUser={updateUser} currentUser={currentUser} comments={comments} songs={songs} setSongs={setSongs} />
+            <Home updateUser={updateUser} currentUser={currentUser} comments={comments} songs={songs} setSongs={setSongs} setFetchedData={setFetchedData}/>
           </Route> }
         </Switch>
       </div>
