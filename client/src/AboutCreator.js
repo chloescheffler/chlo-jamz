@@ -10,10 +10,12 @@ import gif4 from "./linkedin.gif"
 
 function AboutCreator() {
     return (
-        <div> 
-            <img src={logo1} alt="Chloe" width="200" height="270"/>
-            <img src={logo2} alt="Flowers" width="200" height="270"/>
-            <img src={logo3} alt="Sky" width="200" height="270"/>
+        <div>
+            <figure className="image is-128x128">
+                <img className="is-rounded" src={logo1} alt="Chloe" width="200" height="270"/>
+                <img className="is-rounded" src={logo2} alt="Flowers" width="200" height="270"/>
+                <img className="is-rounded" src={logo3} alt="Sky" width="200" height="270"/>
+            </figure>
             <a href="https://github.com/chloescheffler">
                 <img src={gif1} className="githubIcon" alt="Github Icon" width="40" height="40" />
             </a>

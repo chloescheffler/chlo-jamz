@@ -60,7 +60,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <h1>Chlo-Jamz</h1>
+        <h1 className="logo">Chlo-Jamz</h1>
         <Switch>
           <Route path="/all-songs">
             <AllSongs songs={songs} />

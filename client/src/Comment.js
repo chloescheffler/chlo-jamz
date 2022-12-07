@@ -50,6 +50,8 @@ function Comment({ comment, onDelete }) {
       {comment.description}
       <br></br>
       {comment.user.user_name}
+      <div class="field is-grouped is-grouped-centered">
+      <p class="control">
       <button onClick={handleDelete}> X </button>
       <button className="editButton" onClick={userUpdateRental}>
         <Link to={`/comments/${comment.id}`}>Edit</Link>
@@ -57,6 +59,8 @@ function Comment({ comment, onDelete }) {
       <button onClick={userAddComment}>
         <Link to={`/comments/${comment.id}`}>Add Comment</Link>
       </button>
+      </p>
+      </div>
     </div>
   );
 }
