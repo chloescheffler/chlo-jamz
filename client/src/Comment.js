@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 
-function Comment({ comment, onDelete, setFetchedData }) {
-  // const [fetchedData, setFetchedData] = useState(false)
+function Comment({ comment, onDelete }) {
+  const [isForm, setIsForm] = useState(false);
+  const [description, setDescription] = useState(comment.description);
 
   function handleDelete(){
     fetch(`/comments/${comment.id}`,{
@@ -15,29 +15,35 @@ function Comment({ comment, onDelete, setFetchedData }) {
     })
   }
 
-  function userUpdateRental(){
-    setFetchedData(true)
-    const requestOptions = {
+  function userUpdateRental() {
+    fetch(`/comments/${comment.id}`, {
       method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify()
-      };
-        fetch(`/comments/${comment.id}`, requestOptions)
+        body: JSON.stringify({description: description})
+      })
           .then(response => response.json())
-          .then(data => setFetchedData(false));
+          .then(data => console.log(data));
         }
 
+        function handleForm(){
+          setIsForm(prev => !prev)
+        }
+  
   return (
     <div>
-      {comment.description}
+      { !isForm ?
+        comment.description
+        : <form onSubmit={userUpdateRental}>
+            <input type="text" defaultValue={comment.description} onChange={(e) => setDescription(e.target.value)}></input>
+            <button type="submit" >Submit</button>
+          </form>
+      }
       <br></br>
       {comment.user.user_name}
-      <div class="field is-grouped is-grouped-centered">
-      <p class="control">
+      <div className="field is-grouped is-grouped-centered">
+      <p className="control">
       <button onClick={handleDelete}> X </button>
-      <button className="editButton" onClick={userUpdateRental}>
-        <Link to={`/comments/${comment.id}`}>Edit</Link>
-      </button>
+      <button className="primary-btn" onClick={handleForm}>{!isForm ? "Edit Comment" : "Close Comment"}</button>
       </p>
       </div>
     </div>

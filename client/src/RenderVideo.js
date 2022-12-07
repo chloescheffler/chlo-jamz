@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Comment from "./Comment";
+import CommentForm from "./CommentForm";
 
-function RenderVideo({ song, setFetchedData }) {
+function RenderVideo({ song, setFetchedData, currentUser, addNewComment }) {
     const [comments, setComments] = useState([])
     const [showComments, setShowComments] = useState(true);
+    const [expandComment, setExpandComment] = useState(false);
 
     function handleShowComments() {
       setShowComments((showComments) => !showComments);
@@ -37,10 +39,19 @@ function RenderVideo({ song, setFetchedData }) {
                 allowFullScreen
                 />
                 <button onClick={handleShowComments}>
-                    {showComments ? "Show Comments" : "Hide Comments"}
+                    {showComments ? "Hide Comments" : "Show Comments"}
                 </button>
                 <h2>{showComments ? `${comments.length} Comments` : null}</h2>
-                {showComments ? displayComments : null}
+                {showComments ? 
+                <div className="comment-form">
+                    {displayComments} 
+                </div> : null}
+                { showComments ? <div>
+                    <button onClick={()=> setExpandComment(!expandComment)}>Add Comment</button>
+                    <CommentForm song={song} comments={comments} setFetchedData={setFetchedData} 
+                    currentUser={currentUser} expandComment={expandComment} addNewComment={addNewComment} />
+                    </div> : null
+                }
             </div>
     )
 }

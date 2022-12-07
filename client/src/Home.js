@@ -4,12 +4,13 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import Navbar from "./Navbar";
 
-function Home({ setFetchedData, updateUser, currentUser, comments, songs, setSongs }) {
+function Home({ addNewComment, setFetchedData, updateUser, currentUser, comments, songs, setSongs }) {
   const [genres, setGenres] = useState([]);
-  const [selectedGenre, setSelectedGenre] = useState("Holiday")
+  const [selectedGenre, setSelectedGenre] = useState("")
 
   const dropdownButton = 
     <select onChange={(e) => setSelectedGenre(e.target.value)}>
+      <option value={genres}>Select genre...</option>
       {
         genres.map((genre) => 
           <option key={genre.id}>{genre.name}</option> )
@@ -24,15 +25,12 @@ function Home({ setFetchedData, updateUser, currentUser, comments, songs, setSon
       });
   }, []);
 
+  // FOR DROPDOWN BUTTON, FETCHING SPECIFIC GENRE
   useEffect(() => {
     fetch(`/songs?genre=${selectedGenre}`)
       .then(res => res.json())
       .then(data => setSongs(data))
   }, [selectedGenre])
-
-  if (!currentUser) {
-    return <h1> Loading... </h1>;
-  }
 
   return (
     <div>
@@ -40,10 +38,11 @@ function Home({ setFetchedData, updateUser, currentUser, comments, songs, setSon
         Hello {currentUser.user_name}!
       </div>
       {dropdownButton}
-      <Carousel autoPlay showArrows={true} showThumbs={false}>
+      <Carousel showArrows={true} showThumbs={false}>
         {
           songs.map((song) => ( 
-          <RenderVideo song={song} key={song.id} comments={comments} setFetchedData={setFetchedData}/>
+          <RenderVideo song={song} key={song.id} comments={comments} setFetchedData={setFetchedData} 
+          currentUser={currentUser} addNewComment={addNewComment}/>
           ))
         }
       </Carousel>

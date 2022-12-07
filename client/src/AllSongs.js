@@ -8,7 +8,7 @@ function MyFavSongs({ songs }) {
   })
 
     return (
-        <div className="songCard">
+        <div className="columns is-multiline">
           <ul> {displaySongCard} </ul>
         </div>
     )

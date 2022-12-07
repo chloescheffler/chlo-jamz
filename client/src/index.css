@@ -18,5 +18,14 @@ code {
 .carousel .control-dots {
   margin: auto!important;
   padding: 3px!important;
-  margin-bottom: 100px!important;
+  margin-bottom: 120px!important;
+  position: static;
+}
+
+.comment-form {
+  width: 200px;
+  max-height: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow-y: scroll;
 }

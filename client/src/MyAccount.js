@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 
 function MyAccount({ user_profile, currentUser }) {
 
@@ -12,7 +13,7 @@ function MyAccount({ user_profile, currentUser }) {
                 Welcome, {currentUser.user_name} !
             </h1>
             <h2>
-                {currentUser.date_of_birth}
+                {moment(currentUser.date_of_birth).format("MM/DD/YYYY")}
             </h2>
             <h2>
                 {currentUser.age}

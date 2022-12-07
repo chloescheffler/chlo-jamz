@@ -53,6 +53,10 @@ function App() {
       });
   }, []);
 
+  function addNewComment(newCommentObj){
+    setComments( prev => [...prev, newCommentObj])
+  }
+
   const updateUser = (user) => setCurrentUser(user)
   
   if(errors) return <h1>{errors}</h1>
@@ -62,9 +66,6 @@ function App() {
       <div className="App">
         <h1 className="has-text-centered">Chlo-Jamz</h1>
         <Switch>
-          <Route path="/comment-form">
-            <CommentForm comments={comments} setFetchedData={setFetchedData} currentUser={currentUser}/>
-          </Route>
           <Route path="/all-songs">
             <AllSongs songs={songs} />
           </Route>
@@ -79,7 +80,8 @@ function App() {
             <AboutCreator />
           </Route>
           { currentUser && <Route exact path="/">
-            <Home updateUser={updateUser} currentUser={currentUser} comments={comments} songs={songs} setSongs={setSongs} setFetchedData={setFetchedData}/>
+            <Home updateUser={updateUser} currentUser={currentUser} comments={comments} songs={songs} 
+            setSongs={setSongs} setFetchedData={setFetchedData} addNewComment={addNewComment}/>
           </Route> }
         </Switch>
       </div>
