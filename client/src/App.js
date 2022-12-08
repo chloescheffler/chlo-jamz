@@ -6,7 +6,7 @@ import Signup from "./Signup"
 import AboutCreator from "./AboutCreator"
 import MyAccount from "./MyAccount"
 import AllSongs from "./AllSongs"
-import CommentForm from "./CommentForm"
+import Navbar from "./Navbar"
 
 function App() {
   const [user_profile, setUserProfile] = useState([])
@@ -33,6 +33,7 @@ function App() {
     fetch("/songs")
       .then((r) => r.json())
       .then((song) => {
+        console.log(song)
         setSongs(song);
       });
   }, []);
@@ -53,9 +54,6 @@ function App() {
       });
   }, []);
 
-  function addNewComment(newCommentObj){
-    setComments( prev => [...prev, newCommentObj])
-  }
 
   const updateUser = (user) => setCurrentUser(user)
   
@@ -64,7 +62,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <h1 className="has-text-centered">Chlo-Jamz</h1>
+        <h1 className="logo">Chlo-Jamz</h1>
         <Switch>
           <Route path="/all-songs">
             <AllSongs songs={songs} />
@@ -81,9 +79,14 @@ function App() {
           </Route>
           { currentUser && <Route exact path="/">
             <Home updateUser={updateUser} currentUser={currentUser} comments={comments} songs={songs} 
-            setSongs={setSongs} setFetchedData={setFetchedData} addNewComment={addNewComment}/>
+            setSongs={setSongs} setFetchedData={setFetchedData}/>
           </Route> }
         </Switch>
+        <footer className="footer">
+          <div className="content has-text-centered">
+            <Navbar updateUser={updateUser} currentUser={currentUser} />
+          </div>
+        </footer>
       </div>
     </BrowserRouter>
   );

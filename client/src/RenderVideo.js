@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Comment from "./Comment";
 import CommentForm from "./CommentForm";
 
-function RenderVideo({ song, setFetchedData, currentUser, addNewComment }) {
+function RenderVideo({ song, setFetchedData, currentUser }) {
     const [comments, setComments] = useState([])
     const [showComments, setShowComments] = useState(true);
     const [expandComment, setExpandComment] = useState(false);
@@ -22,8 +22,19 @@ function RenderVideo({ song, setFetchedData, currentUser, addNewComment }) {
         setComments(updatedObj)
     }
 
+    function addNewComment(newCommentObj){
+        setComments( prev => [...prev, newCommentObj])
+    }
+
+    function handleEditComment(commentObj) {
+        const updatedComments = comments.map((comment) => {
+            return comment.id === commentObj.id ? commentObj : comment
+        })
+        setComments(updatedComments)
+    }
+
     const displayComments = comments?.map((comment) => {
-        return <Comment comment={comment} key={comment.id} onDelete={handleDelete} setFetchedData={setFetchedData}/>
+        return <Comment handleEditComment={handleEditComment} comment={comment} key={comment.id} onDelete={handleDelete} setFetchedData={setFetchedData}/>
     })
 
     return (

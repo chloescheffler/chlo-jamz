@@ -34,10 +34,12 @@ function Home({ addNewComment, setFetchedData, updateUser, currentUser, comments
 
   return (
     <div>
-      <div className="has-text-centered">
+      <div className="current-user">
         Hello {currentUser.user_name}!
       </div>
-      {dropdownButton}
+      <div className="dropdown-button">
+        {dropdownButton}
+      </div>
       <Carousel showArrows={true} showThumbs={false}>
         {
           songs.map((song) => ( 
@@ -46,11 +48,6 @@ function Home({ addNewComment, setFetchedData, updateUser, currentUser, comments
           ))
         }
       </Carousel>
-      <footer className="footer">
-        <div className="content has-text-centered">
-          <Navbar updateUser={updateUser} currentUser={currentUser} />
-        </div>
-      </footer>
     </div>
   );
 }

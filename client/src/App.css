@@ -1,7 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Monoton');
-@import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
-
 .App {
+  background-color: #DFBF87;
   text-align: center;
 }
 
@@ -38,8 +36,4 @@
   to {
     transform: rotate(360deg);
   }
-}
-
-.logo {
-  font-family: 'Monoton', serif;
 }

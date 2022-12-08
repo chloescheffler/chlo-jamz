@@ -18,19 +18,22 @@ import { NavLink, useHistory } from "react-router-dom";
 
     return (
         <div className="buttons">
-            <button className="button is-normal px-5 mx-6">
+            <button className="button button-1 is-normal px-5 mr-6">
                 <NavLink  className="nav" exact to="/" >Home</NavLink>
             </button>
-            <button className="button is-normal px-5 mx-6">
+            <button className="button button-1 is-normal px-5 mr-6">
+                <NavLink  className="nav" exact to="/about-creator" >About Creator</NavLink>
+            </button>
+            <button className="button button-1 is-normal px-5 mr-6">
                 <NavLink  className="nav" exact to="/all-songs" >All Songs</NavLink>
             </button>
-            <button className="button is-normal px-5 mx-6">
+            <button className="button button-1 is-normal px-5 mr-6">
                 <NavLink  className="nav" exact to="/my-account" >My Account</NavLink>
             </button>
-            <button className="button is-normal px-5 mx-6">
+            <button className="button button-1 is-normal px-5 mr-6">
                 <NavLink  className="nav" exact to="/login" >Login/Signup</NavLink>
             </button>
-            { currentUser ? <button className="button is-normal is-pulled-right px-5 mx-6" onClick={handleLogout}>Logout</button> : null }
+            { currentUser ? <button className="button button-1 px-5 mx-5" onClick={handleLogout}>Logout</button> : null }
         </div>
     )
 }

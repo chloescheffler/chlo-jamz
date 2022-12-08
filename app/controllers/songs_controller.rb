@@ -4,6 +4,8 @@ class SongsController < ApplicationController
     def index
         if (params[:genre]) 
             render json: Song.joins(:genre).where({genre: {name: params[:genre]}})
+        elsif (params["no-limit"])
+            render json: Song.all
         else 
             render json: Song.order(Arel.sql("RANDOM()")).limit(10), status: :ok
         end

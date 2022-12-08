@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function Comment({ comment, onDelete }) {
+function Comment({ comment, onDelete, handleEditComment }) {
   const [isForm, setIsForm] = useState(false);
   const [description, setDescription] = useState(comment.description);
 
@@ -15,14 +15,18 @@ function Comment({ comment, onDelete }) {
     })
   }
 
-  function userUpdateRental() {
+  function userUpdateRental(e) {
+    e.preventDefault()
     fetch(`/comments/${comment.id}`, {
       method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({description: description})
       })
           .then(response => response.json())
-          .then(data => console.log(data));
+          .then(data => {
+            handleEditComment(data)
+            handleForm()
+          });
         }
 
         function handleForm(){
