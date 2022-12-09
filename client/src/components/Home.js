@@ -41,7 +41,7 @@ console.log(songs)
       <div className="dropdown-button">
         {dropdownButton}
       </div>
-      <Carousel autoPlay infiniteLoop interval="5000" showArrows={true} showThumbs={false}>
+      <Carousel autoPlay infiniteLoop interval="7000" stopOnHover={true} showArrows={true} showThumbs={false}>
         {
           songs?.map((song) => ( 
           <RenderVideo song={song} key={song.id} comments={comments} setFetchedData={setFetchedData} 

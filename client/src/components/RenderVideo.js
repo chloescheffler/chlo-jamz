@@ -39,7 +39,6 @@ function RenderVideo({ song, setFetchedData, currentUser }) {
 
     return (
             <div className="iframe-div">
-                <div className="iframe-only">
                 <iframe 
                 width="100"
                 height="600"
@@ -50,7 +49,6 @@ function RenderVideo({ song, setFetchedData, currentUser }) {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 />
-                </div> 
                 <div className="comment-form-div">
                 <h1 className="comment-text"> {`${comments.length} Comments`} </h1>
                 <button className="primary-btn" onClick={handleShowComments}>
