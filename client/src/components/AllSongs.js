@@ -15,7 +15,7 @@ function AllSongs() {
   })
 
     return (
-        <div className="songCards">
+        <div className="songCards" class="px-6 mx-6">
           <ul> {displaySongCard} </ul>
         </div>
     )

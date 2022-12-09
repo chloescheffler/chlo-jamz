@@ -38,9 +38,10 @@ function RenderVideo({ song, setFetchedData, currentUser }) {
     })
 
     return (
-            <div> 
+            <div className="iframe-div">
+                <div className="iframe-only">
                 <iframe 
-                width="0"
+                width="100"
                 height="600"
                 src={song.url}
                 alt="youtube video" 
@@ -49,20 +50,26 @@ function RenderVideo({ song, setFetchedData, currentUser }) {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 />
-                <button onClick={handleShowComments}>
+                </div> 
+                <div className="comment-form-div">
+                <h1 className="comment-text"> {`${comments.length} Comments`} </h1>
+                <button className="primary-btn" onClick={handleShowComments}>
                     {showComments ? "Hide Comments" : "Show Comments"}
                 </button>
-                <h2>{showComments ? `${comments.length} Comments` : null}</h2>
+                <br></br>
+                <br></br>
                 {showComments ? 
                 <div className="comment-form">
                     {displayComments} 
                 </div> : null}
+                <br></br>
                 { showComments ? <div>
-                    <button onClick={()=> setExpandComment(!expandComment)}>Add Comment</button>
+                    <button className="primary-btn" onClick={()=> setExpandComment(!expandComment)}>Add Comment</button>
                     <CommentForm song={song} comments={comments} setFetchedData={setFetchedData} 
                     currentUser={currentUser} expandComment={expandComment} addNewComment={addNewComment} />
                     </div> : null
                 }
+                </div>
             </div>
     )
 }

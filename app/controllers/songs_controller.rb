@@ -1,5 +1,5 @@
 class SongsController < ApplicationController
-    skip_before_action :authorized_user, only: [:index]
+    skip_before_action :authorized_user, only: [:index, :show]
     
     def index
         if (params[:genre]) 

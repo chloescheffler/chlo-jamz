@@ -34,19 +34,20 @@ function Comment({ comment, onDelete, handleEditComment }) {
         }
   
   return (
-    <div>
+    <div className="comment-div">
+      {comment.user.user_name}
+      <br></br>
       { !isForm ?
         comment.description
         : <form onSubmit={userUpdateRental}>
             <input type="text" defaultValue={comment.description} onChange={(e) => setDescription(e.target.value)}></input>
-            <button type="submit" >Submit</button>
+            <button className="primary-btn" type="submit" >Submit</button>
           </form>
       }
       <br></br>
-      {comment.user.user_name}
       <div className="field is-grouped is-grouped-centered">
       <p className="control">
-      <button onClick={handleDelete}> X </button>
+      <button className="primary-btn" onClick={handleDelete}> X </button>
       <button className="primary-btn" onClick={handleForm}>{!isForm ? "Edit Comment" : "Close Comment"}</button>
       </p>
       </div>

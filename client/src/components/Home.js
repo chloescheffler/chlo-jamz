@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import RenderVideo from "./RenderVideo";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
-import Navbar from "./Navbar";
 
 function Home({ addNewComment, setFetchedData, updateUser, currentUser, comments, songs, setSongs }) {
   const [genres, setGenres] = useState([]);
@@ -32,6 +31,8 @@ function Home({ addNewComment, setFetchedData, updateUser, currentUser, comments
       .then(data => setSongs(data))
   }, [selectedGenre])
 
+console.log(songs)
+
   return (
     <div>
       <div className="current-user">
@@ -40,9 +41,9 @@ function Home({ addNewComment, setFetchedData, updateUser, currentUser, comments
       <div className="dropdown-button">
         {dropdownButton}
       </div>
-      <Carousel showArrows={true} showThumbs={false}>
+      <Carousel autoPlay infiniteLoop interval="5000" showArrows={true} showThumbs={false}>
         {
-          songs.map((song) => ( 
+          songs?.map((song) => ( 
           <RenderVideo song={song} key={song.id} comments={comments} setFetchedData={setFetchedData} 
           currentUser={currentUser} addNewComment={addNewComment}/>
           ))

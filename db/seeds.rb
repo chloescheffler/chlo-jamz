@@ -137,7 +137,7 @@ S96 = Song.create!(name: "Black Betty", artist: "Ram Jam", url: "https://www.you
 S97 = Song.create!(name: "We Will Rock You", artist: "Queen", url: "https://www.youtube.com/embed/-tJYN-eG1zk", album_url: "https://www.whosampled.com/static/track_images_200/lr184_2008121_132147596512.jpg",genre_id: G3.id)
 S98 = Song.create!(name: "Still Loving You", artist: "Scorpions", url: "https://www.youtube.com/embed/7pOr3dBFAeY", album_url: "https://www.whosampled.com/static/track_images_200/lr9268_2010328_11149134936.jpg",genre_id: G3.id)
 S99 = Song.create!(name: "Faithfully", artist: "Journey", url: "https://www.youtube.com/embed/OMD8hBsA-RI", album_url: "https://www.whosampled.com/static/track_images_200/lr2848_20091128_04243955055.jpg",genre_id: G3.id)
-S100 = Song.create!(name: "Don't Let Me Down", artist: "The Beatles", url: "https://www.youtube.com/embed/NCtzkaL2t_Y" , album_url: "https://en.wikipedia.org/wiki/Don%27t_Let_Me_Down_(Beatles_song)#/media/File:Beatles_Get_Back.jpg",genre_id: G3.id)
+S100 = Song.create!(name: "Don't Let Me Down", artist: "The Beatles", url: "https://www.youtube.com/embed/NCtzkaL2t_Y" , album_url: "https://upload.wikimedia.org/wikipedia/he/f/fd/Don%27t_Let_Me_Down_Cover.jpg",genre_id: G3.id)
 
 puts "Creating comments ✍️..."
 

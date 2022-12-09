@@ -63,6 +63,7 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <h1 className="logo">Chlo-Jamz</h1>
+        <hr className="solid"></hr>
         <Switch>
           <Route path="/all-songs">
             <AllSongs songs={songs} />

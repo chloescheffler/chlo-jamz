@@ -42,14 +42,17 @@ function Login({ updateUser }) {
 
   return (
     <div>
+      <div className="login-form-background">
       <form className="login-form" onSubmit={onSubmit}>
-        <p> Log In Here! </p>
+        <p><b> Login Here! </b></p>
+        <div className="input-text">
         <input
           type="text"
           onChange={handleChange}
           name="user_name"
           value={formData.user_name}
           placeholder="username"
+          className="input1"
         />
         <input
           type="password"
@@ -57,9 +60,12 @@ function Login({ updateUser }) {
           name="password"
           value={formData.password}
           placeholder="password"
+          className="input2"
         />
         <input type="submit" value="Log In"/>
+        </div>
       </form>
+      </div>
     </div>
   );
 }

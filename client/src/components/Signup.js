@@ -53,33 +53,44 @@ function Signup({ updateUser }) {
 
     return (
         <div>
+            <div className="submit-form-background">
             <form className="submit-form" onSubmit={onSubmit}>
-                <p> Don't have an account? Create one!</p>
+                <p><b>Don't have an account? Create one!</b></p>
+                <br></br>
+                <div className="input-text-signup">
                 <input
                     type="text"
                     onChange={handleChange}
                     name="user_name"
                     value={formData.user_name}
                     placeholder="username"
+                    className="date-input"
                 />
+                <br></br>
                 <input
                     type="password"
                     onChange={handleChange}
                     name="password"
                     value={formData.password}
                     placeholder="password"
+                    className="date-input"
                 />
+                <br></br>
                 <input
                     type="date"
                     name="date_of_birth"
+                    className="date-input"
                 />
+                <br></br>
                 <input
                     type="number"
                     onChange={handleChange}
                     name="age"
                     value={formData.age}
                     placeholder="age"
+                    className="date-input"
                 />
+                <br></br>
                 <input
                     type="text"
                     onChange={handleChange}
@@ -87,6 +98,7 @@ function Signup({ updateUser }) {
                     value={formData.profile_pic_url}
                     placeholder="image"
                 />
+                <br></br>
                 <input
                     type="text"
                     onChange={handleChange}
@@ -94,6 +106,7 @@ function Signup({ updateUser }) {
                     value={formData.pronouns}
                     placeholder="pronouns"
                 />
+                <br></br>
                 <input
                     type="text"
                     onChange={handleChange}
@@ -101,8 +114,11 @@ function Signup({ updateUser }) {
                     value={formData.bio}
                     placeholder="bio"
                 />
+                <br></br>
                 <input type="submit" value="Create Account"/>
+                </div>
             </form>
+            </div>
         </div>
     )
 }

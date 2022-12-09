@@ -42,13 +42,13 @@ function CommentForm({ addNewComment, currentUser, expandComment, song }) {
                 onChange={(e) => {
                   setNewDescription(e.target.value);
                 }}
-                className="input"
+                className="inputs"
                 type="text"
                 placeholder="Enter comment here..."
               />
             </div>
           </div>
-          <button onClick={userAddComment} type="submit">
+          <button className="primary-btn" onClick={userAddComment} type="submit">
             Submit
           </button>
         </div>
